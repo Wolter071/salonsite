@@ -3,30 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preload" href="fonts/Sansation-Light.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="fonts/Sansation-Regular.ttf" as="font" type="font/ttf" crossorigin>
 <title>Название салона — парикмахерская</title>
 <meta name="description" content="Стрижки, окрашивание и уход. Онлайн-запись к мастеру.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+@font-face{font-family:"Sansation";font-weight:300;font-style:normal;font-display:swap;src:url(fonts/Sansation-Light.ttf) format("truetype")}
+@font-face{font-family:"Sansation";font-weight:300;font-style:italic;font-display:swap;src:url(fonts/Sansation-LightItalic.ttf) format("truetype")}
+@font-face{font-family:"Sansation";font-weight:400;font-style:normal;font-display:swap;src:url(fonts/Sansation-Regular.ttf) format("truetype")}
+@font-face{font-family:"Sansation";font-weight:700;font-style:normal;font-display:swap;src:url(fonts/Sansation-Bold.ttf) format("truetype")}
 :root{
   --milk:#FBF8F2;--cream:#F3EBDD;--beige:#DDCCB0;--graphite:#2D2C2E;--gold:#A98649;--ink-soft:#5E5A55;--line:rgba(45,44,46,.14);
   --shadow:0 18px 50px -22px rgba(60,45,20,.35);
-  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;--sans:"Jost","Helvetica Neue",Arial,sans-serif;
+  --sans:"Sansation","Helvetica Neue",Arial,sans-serif;--serif:var(--sans);
   box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--milk:#1F1E20;--cream:#28262A;--beige:#4A4136;--graphite:#F3EBDD;--gold:#C9A869;--ink-soft:#B9B1A5;--line:rgba(243,235,221,.16);--shadow:0 18px 50px -22px rgba(0,0,0,.7)}}
 :root[data-theme="dark"]{--milk:#1F1E20;--cream:#28262A;--beige:#4A4136;--graphite:#F3EBDD;--gold:#C9A869;--ink-soft:#B9B1A5;--line:rgba(243,235,221,.16);--shadow:0 18px 50px -22px rgba(0,0,0,.7)}
 html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
 *,*::before,*::after{box-sizing:border-box}
-body{margin:0;background:var(--milk);color:var(--graphite);font:300 17px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--milk);color:var(--graphite);font:400 16px/1.7 var(--sans);-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
-h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;margin:0;letter-spacing:-.01em}
-h2{font-size:clamp(32px,4.4vw,52px)}
+h1,h2,h3{font-family:var(--serif);font-weight:300;line-height:1.15;margin:0;letter-spacing:0}
+h3{font-weight:400}
+h2{font-size:clamp(28px,3.6vw,42px)}
 p{margin:0}
-.btn{display:inline-block;padding:15px 30px;border-radius:999px;font:500 15px/1 var(--sans);letter-spacing:.02em;border:1px solid var(--graphite);transition:background .25s,color .25s,border-color .25s}
+.btn{display:inline-block;padding:15px 30px;border-radius:999px;font:400 15px/1 var(--sans);letter-spacing:.03em;border:1px solid var(--graphite);transition:background .25s,color .25s,border-color .25s}
 .btn-fill{background:var(--graphite);color:var(--milk)}
 .btn-fill:hover{background:var(--gold);border-color:var(--gold);color:#fff}
 .btn-line:hover{border-color:var(--gold);color:var(--gold)}
@@ -34,7 +38,7 @@ p{margin:0}
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--milk) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:19;background:var(--milk)}
 .bar{display:flex;align-items:center;justify-content:space-between;height:72px}
-.logo{font:500 26px/1 var(--serif);letter-spacing:.01em}
+.logo{font:400 22px/1 var(--sans);letter-spacing:.04em}
 .logo span{color:var(--gold)}
 nav{display:flex;gap:30px;font-size:15px}
 nav a{color:var(--ink-soft);transition:color .2s}
@@ -44,9 +48,9 @@ nav a:hover{color:var(--graphite)}
 /* hero */
 .hero{padding:72px 0 96px}
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
-.hero h1{font-size:clamp(46px,7.2vw,92px);font-weight:400}
-.hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
-.hero p.lead{margin-top:28px;max-width:30em;color:var(--ink-soft);font-size:18px}
+.hero h1{font-size:clamp(36px,5.2vw,68px);font-weight:300;line-height:1.12}
+.hero h1 em{font-style:italic;color:var(--gold);font-weight:300}
+.hero p.lead{margin-top:28px;max-width:30em;color:var(--ink-soft);font-size:17px}
 .hero .actions{margin-top:38px;display:flex;gap:14px;flex-wrap:wrap}
 .arch{position:relative;aspect-ratio:3/4;border-radius:999px 999px 24px 24px;background:linear-gradient(165deg,var(--cream),var(--beige));box-shadow:var(--shadow);display:grid;place-items:center;text-align:center;padding:40px}
 .arch::before{content:"";position:absolute;inset:14px;border:1px solid var(--gold);border-radius:999px 999px 14px 14px;opacity:.75}
@@ -63,13 +67,13 @@ section{padding:96px 0}
 .perks{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
 .perk{padding:30px 28px 8px 0;border-right:1px solid var(--line);padding-left:28px}
 .perk:first-child{padding-left:0}.perk:last-child{border-right:0}
-.perk h3{font-size:25px;margin-bottom:10px}
+.perk h3{font-size:21px;margin-bottom:10px}
 .perk p{color:var(--ink-soft);font-size:16px}
 @media(max-width:900px){.perks{grid-template-columns:1fr 1fr}.perk{padding:26px 20px 20px 0;border-bottom:1px solid var(--line)}.perk:nth-child(2n){border-right:0;padding-left:20px}.perk:nth-child(2n+1){padding-left:0}}
 @media(max-width:520px){.perks{grid-template-columns:1fr}.perk{border-right:0!important;padding-left:0!important}}
 .svc{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .card{background:var(--milk);border-radius:20px;padding:34px 30px;box-shadow:var(--shadow)}
-.card h3{font-size:28px;margin-bottom:18px}
+.card h3{font-size:23px;margin-bottom:18px}
 .card ul{list-style:none;margin:0;padding:0}
 .card li{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:16px}
 .card li:last-child{border-bottom:0}
@@ -80,7 +84,7 @@ section{padding:96px 0}
 .master{flex:1 0 220px;scroll-snap-align:start;background:none;border:0;padding:0;font:inherit;color:inherit;text-align:left;cursor:pointer}
 .master .ph{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:22px;box-shadow:var(--shadow);transition:transform .35s}
 .master:hover .ph{transform:translateY(-5px)}
-.master h3{font-size:26px;margin-top:18px}
+.master h3{font-size:21px;margin-top:18px}
 .master p{color:var(--ink-soft);font-size:15px}
 .ov{position:fixed;inset:0;z-index:50;background:rgba(20,18,16,0);transition:background .6s}
 .ov.on{background:rgba(20,18,16,.55)}
@@ -90,19 +94,19 @@ section{padding:96px 0}
 .face{position:absolute;inset:0;border-radius:inherit;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .front img{width:100%;height:100%;object-fit:cover;display:block}
 .back{transform:rotateY(180deg);background:var(--milk);overflow:auto;padding:calc(env(safe-area-inset-top,0px) + 48px) 30px calc(env(safe-area-inset-bottom,0px) + 30px)}
-.back h3{font-size:36px}
+.back h3{font-size:28px}
 .back .role{color:var(--gold);margin:6px 0 22px}
 .back dl{margin:0 0 20px;display:grid;gap:14px}
 .back dt{font-size:14px;color:var(--ink-soft)}
-.back dd{margin:2px 0 0;font:500 22px/1.2 var(--serif)}
+.back dd{margin:2px 0 0;font:400 19px/1.25 var(--sans)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-.chips span{font:300 14px/1 var(--sans);padding:8px 14px;border:1px solid var(--line);border-radius:999px}
+.chips span{font:400 13px/1 var(--sans);padding:8px 14px;border:1px solid var(--line);border-radius:999px}
 .back .about{color:var(--ink-soft);margin-bottom:24px}
-.back h4{font:500 22px/1 var(--serif);margin:0 0 12px}
+.back h4{font:400 19px/1 var(--sans);margin:0 0 12px}
 .works{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:28px}
 .works i{aspect-ratio:1;border-radius:12px;background:linear-gradient(150deg,var(--cream),var(--beige))}
 .back .btn{width:100%;text-align:center}
-.x{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);right:16px;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--milk);color:var(--graphite);font-size:18px;cursor:pointer}
+.x{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);right:16px;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--milk);color:var(--graphite);font-size:26px;line-height:1;cursor:pointer}
 .x:hover{border-color:var(--gold);color:var(--gold)}
 .cta{text-align:center;background:var(--graphite);color:var(--milk)}
 :root:not([data-theme="light"]) .cta{--x:1}
@@ -121,7 +125,7 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);color:var(--ink-soft
 #cab html,#cab body{height:100%}
 #cab button{font:inherit;color:inherit;cursor:pointer}
 #cab :focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-#cab h1,#cab h2,#cab h3{font-family:var(--serif);font-weight:600;margin:0;line-height:1.1}
+#cab h1,#cab h2,#cab h3{font-family:var(--serif);font-weight:300;margin:0;line-height:1.15}
 #cab .btn{border:1px solid var(--graphite);background:none;border-radius:999px;padding:9px 18px;font-size:14px;transition:.2s}
 #cab .btn:hover{border-color:var(--gold);color:var(--gold)}
 #cab .fill{background:var(--graphite);color:var(--milk)}
@@ -131,19 +135,19 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);color:var(--ink-soft
 #cab .bad{border-color:var(--bad);color:var(--bad)}
 #cab .login{min-height:100%;display:grid;place-items:center;padding:24px}
 #cab .lbox{width:100%;max-width:420px;background:var(--cream);border-radius:24px;padding:40px 32px;box-shadow:var(--shadow);text-align:center}
-#cab .lbox h1{font-size:38px;margin-bottom:10px}
+#cab .lbox h1{font-size:30px;margin-bottom:10px}
 #cab .lbox p{color:var(--soft);margin:0 0 24px}
 #cab .lbox .btn{display:block;width:100%;margin-top:12px;padding:14px}
 #cab .note{font-size:13px;color:var(--soft);margin-top:20px!important}
 #cab .app{display:grid;grid-template-columns:230px 1fr;min-height:100%}
 #cab aside{background:var(--cream);border-right:1px solid var(--line);padding:24px 16px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh}
-#cab aside .logo{font:600 24px/1 var(--serif);padding:0 10px 20px}
+#cab aside .logo{font:400 19px/1 var(--sans);letter-spacing:.04em;padding:0 10px 20px}
 #cab aside .tab{text-align:left;border:0;background:none;padding:11px 12px;border-radius:12px;color:var(--soft)}
 #cab aside .tab[aria-selected=true]{background:var(--milk);color:var(--graphite);box-shadow:var(--shadow)}
 #cab aside .who{margin-top:auto;font-size:14px;color:var(--soft);padding:0 10px}
 #cab main{padding:32px clamp(16px,3vw,40px);min-width:0}
 #cab .top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap}
-#cab .top h2{font-size:36px}
+#cab .top h2{font-size:30px}
 #cab .demo{font-size:13px;color:var(--warn)}
 #cab .tbl{width:100%;border-collapse:collapse;font-size:15px}
 #cab .tbl th{text-align:left;font-weight:400;color:var(--soft);font-size:13px;padding:8px 10px;border-bottom:1px solid var(--line)}
@@ -159,9 +163,9 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);color:var(--ink-soft
 #cab .chip[aria-pressed=true]{background:var(--graphite);color:var(--milk)}
 #cab .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-bottom:28px}
 #cab .kpi{background:var(--cream);border-radius:18px;padding:20px}
-#cab .kpi b{display:block;font:600 38px/1 var(--serif);margin-top:6px}
+#cab .kpi b{display:block;font:300 32px/1 var(--sans);margin-top:6px}
 #cab .panel{background:var(--cream);border-radius:18px;padding:22px;margin-bottom:20px}
-#cab .panel h3{font-size:24px;margin-bottom:14px}
+#cab .panel h3{font-size:21px;margin-bottom:14px}
 #cab .bars{display:flex;align-items:flex-end;gap:14px;height:170px}
 #cab .cbar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;height:100%;font-size:13px;color:var(--soft)}
 #cab .cbar i{display:block;width:100%;background:linear-gradient(var(--gold),var(--beige));border-radius:8px 8px 0 0}
@@ -187,17 +191,19 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);color:var(--ink-soft
 #cab aside .logo,#cab aside .who{display:none}
 #cab .two{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){#cab *{transition:none!important}}
-#cab{display:contents;font:300 16px/1.5 var(--sans);color:var(--graphite);--soft:var(--ink-soft);--ok:#4E7A56;--bad:#A24B44;--warn:#B07A2A}
+#cab{display:contents;font:400 15px/1.5 var(--sans);color:var(--graphite);--soft:var(--ink-soft);--ok:#4E7A56;--bad:#A24B44;--warn:#B07A2A}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]) #cab{--ok:#7FB188;--bad:#D98A82;--warn:#D9AE63}}
 :root[data-theme="dark"] #cab{--ok:#7FB188;--bad:#D98A82;--warn:#D9AE63}
 #cab .app{position:fixed;inset:0;z-index:60;overflow:auto;background:var(--milk);align-items:start}
 #cab aside{align-self:start}
 #cab .lmod{position:fixed;inset:0;z-index:55;display:grid;place-items:center;padding:24px;background:rgba(20,18,16,.55);overflow:auto}
 #cab .lbox{position:relative}
-#cab .cx{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--graphite)}
+#cab .cx{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--graphite);font-size:26px;line-height:1}
 #cab .ev{color:var(--graphite)}
+#cab h3{font-weight:400}
+#cab select{font:inherit;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--milk);color:var(--graphite)}
 .bar-r{display:flex;gap:10px;align-items:center}
-@media(max-width:520px){.logo{font-size:19px}.bar .btn{padding:10px 14px;font-size:14px}.bar-r{gap:6px}}
+@media(max-width:520px){.logo{font-size:16px}.bar .btn{padding:10px 14px;font-size:14px}.bar-r{gap:6px}}
 </style>
 </head>
 <body>
@@ -243,11 +249,7 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);color:var(--ink-soft
   <section id="services" aria-labelledby="svc-h">
     <div class="wrap">
       <div class="head"><h2 id="svc-h">Услуги и цены</h2><p>Демонстрационные позиции. Названия, цены и длительность вы зададите в админ-панели.</p></div>
-      <div class="svc">
-        <div class="card"><h3>Стрижки</h3><ul><li>Мужская стрижка<b>от — ₽</b></li><li>Женская стрижка<b>от — ₽</b></li><li>Укладка<b>от — ₽</b></li></ul></div>
-        <div class="card"><h3>Окрашивание</h3><ul><li>Однотонное окрашивание<b>от — ₽</b></li><li>Мелирование<b>от — ₽</b></li><li>Сложное окрашивание<b>от — ₽</b></li></ul></div>
-        <div class="card"><h3>Уход</h3><ul><li>Уходовая процедура<b>от — ₽</b></li><li>Дополнительная услуга<b>от — ₽</b></li><li>Консультация<b>от — ₽</b></li></ul></div>
-      </div>
+      <div class="svc" id="svc"></div>
       <div class="more"><a class="btn btn-line" href="#book">Выбрать услугу и записаться</a></div>
     </div>
   </section>
@@ -279,23 +281,46 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);color:var(--ink-soft
 </footer>
 <script>
 (function(){
-var M=[
-{n:"Имя мастера",r:"Стилист-универсал",e:"8 лет",d:"Коротко о мастере: подход к работе, любимые техники и кому подойдёт. Текст-заглушка, редактируется в админ-панели.",t:["Женские стрижки","Укладки","Консультация"],h:"#D9C3A0"},
-{n:"Имя мастера",r:"Барбер",e:"6 лет",d:"Коротко о мастере: подход к работе, любимые техники и кому подойдёт. Текст-заглушка, редактируется в админ-панели.",t:["Мужские стрижки","Оформление бороды"],h:"#C9B79B"},
-{n:"Имя мастера",r:"Колорист",e:"10 лет",d:"Коротко о мастере: подход к работе, любимые техники и кому подойдёт. Текст-заглушка, редактируется в админ-панели.",t:["Окрашивание","Мелирование","Тонирование"],h:"#CDB07A"},
-{n:"Имя мастера",r:"Мастер по уходу",e:"5 лет",d:"Коротко о мастере: подход к работе, любимые техники и кому подойдёт. Текст-заглушка, редактируется в админ-панели.",t:["Уходовые процедуры","Восстановление"],h:"#D8C8B4"}
-];
+var CATS=["Стрижки","Окрашивание","Уход"],KEY="salon-demo-v1",HUES=["#D9C3A0","#C9B79B","#CDB07A","#D8C8B4","#D2BC96"];
+var DESC="Коротко о мастере: подход к работе, любимые техники и кому подойдёт. Текст-заглушка, редактируется в кабинете.";
+function seed(){return{
+ sv:[{id:1,n:"Мужская стрижка",m:45,p:0,c:0},{id:2,n:"Женская стрижка",m:60,p:0,c:0},{id:3,n:"Укладка",m:45,p:0,c:0},{id:4,n:"Однотонное окрашивание",m:120,p:0,c:1},{id:5,n:"Мелирование",m:150,p:0,c:1},{id:6,n:"Сложное окрашивание",m:180,p:0,c:1},{id:7,n:"Уходовая процедура",m:45,p:0,c:2},{id:8,n:"Дополнительная услуга",m:30,p:0,c:2},{id:9,n:"Консультация",m:30,p:0,c:2}],
+ ms:[{id:1,n:"Мастер 1",r:"Стилист-универсал",e:"8 лет",d:DESC,t:["Женские стрижки","Укладки","Консультация"],h:HUES[0]},
+     {id:2,n:"Мастер 2",r:"Барбер",e:"6 лет",d:DESC,t:["Мужские стрижки","Оформление бороды"],h:HUES[1]},
+     {id:3,n:"Мастер 3",r:"Колорист",e:"10 лет",d:DESC,t:["Окрашивание","Мелирование","Тонирование"],h:HUES[2]},
+     {id:4,n:"Мастер 4",r:"Мастер по уходу",e:"5 лет",d:DESC,t:["Уходовые процедуры","Восстановление"],h:HUES[3]}]}}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+var S=window.SALON={cats:CATS,subs:[],esc:esc},d=seed();
+try{var j=JSON.parse(localStorage.getItem(KEY));if(j&&Array.isArray(j.sv)&&Array.isArray(j.ms)&&j.ms.every(function(m){return Array.isArray(m.t)}))d=j}catch(e){}
+S.sv=d.sv;S.ms=d.ms;
+S.emit=function(){S.subs.forEach(function(f){f()})};
+S.on=function(f){S.subs.push(f)};
+S.save=function(){try{localStorage.setItem(KEY,JSON.stringify({sv:S.sv,ms:S.ms}))}catch(e){}S.emit()};
+S.reset=function(){var x=seed();S.sv=x.sv;S.ms=x.ms;S.save()};
+S.nextId=function(){var m=100;S.sv.concat(S.ms).forEach(function(x){if(x.id>m)m=x.id});return m+1};
+S.hue=function(){return HUES[S.ms.length%HUES.length]};
+S.desc=DESC;
+function renderSvc(){var el=document.getElementById("svc");if(!el)return;var h="";
+ CATS.forEach(function(c,i){var l=S.sv.filter(function(x){return x.c===i});if(!l.length)return;
+  h+='<div class="card"><h3>'+c+'</h3><ul>'+l.map(function(x){return'<li>'+esc(x.n)+'<b>от '+(x.p>0?x.p:"—")+' ₽</b></li>'}).join("")+'</ul></div>'});
+ el.innerHTML=h||'<p>Услуги появятся здесь.</p>'}
+S.on(renderSvc);renderSvc();
+})();
+</script>
+<script>
+(function(){
+var M=SALON.ms,E=SALON.esc;
 function ph(c){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3EBDD"/><stop offset="1" stop-color="'+c+'"/></linearGradient></defs><rect width="400" height="500" fill="url(#g)"/><circle cx="200" cy="190" r="74" fill="#fff" fill-opacity=".55"/><path d="M60 500c0-110 62-170 140-170s140 60 140 170z" fill="#fff" fill-opacity=".55"/></svg>';return 'data:image/svg+xml;utf8,'+encodeURIComponent(s)}
 var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,T=reduce?0:850;
 var team=document.getElementById('team'),ov=null,fl=null,btn=null,idx=0;
-M.forEach(function(m,i){var b=document.createElement('button');b.type='button';b.className='master';b.setAttribute('aria-label','Открыть профиль мастера: '+m.r);b.innerHTML='<img class="ph" src="'+ph(m.h)+'" alt="Заглушка фото мастера"><h3>'+m.n+'</h3><p>'+m.r+' · '+m.e+'</p>';b.onclick=function(){openCard(i,b)};team.appendChild(b)});
+function renderTeam(){M=SALON.ms;team.innerHTML='';M.forEach(function(m,i){var b=document.createElement('button');b.type='button';b.className='master';b.setAttribute('aria-label','Открыть профиль мастера: '+m.r);b.innerHTML='<img class="ph" src="'+ph(m.h)+'" alt="Заглушка фото мастера"><h3>'+E(m.n)+'</h3><p>'+E(m.r)+' · '+E(m.e)+'</p>';b.onclick=function(){openCard(i,b)};team.appendChild(b)})}renderTeam();SALON.on(renderTeam);
 function put(o){fl.style.left=o.l+'px';fl.style.top=o.t+'px';fl.style.width=o.w+'px';fl.style.height=o.h+'px';fl.style.borderRadius=o.r+'px'}
 function rect(){var r=btn.querySelector('.ph').getBoundingClientRect();return{l:r.left,t:r.top,w:r.width,h:r.height,r:22}}
 function big(){var w=innerWidth,h=innerHeight;if(w<700)return{l:0,t:0,w:w,h:h,r:0};var tw=Math.min(540,w-48),th=Math.min(720,h-48);return{l:(w-tw)/2,t:(h-th)/2,w:tw,h:th,r:28}}
 function openCard(i,b){
  if(ov)return;btn=b;idx=i;var m=M[i];
  ov=document.createElement('div');ov.className='ov';
- ov.innerHTML='<div class="fl" role="dialog" aria-modal="true" aria-label="Профиль мастера"><div class="in"><div class="face front"><img alt="" src="'+ph(m.h)+'"></div><div class="face back"><button class="x" type="button" aria-label="Закрыть">✕</button><h3>'+m.n+'</h3><p class="role">'+m.r+'</p><dl><div><dt>Стаж работы</dt><dd>'+m.e+'</dd></div><div><dt>Специализация</dt><dd><div class="chips">'+m.t.map(function(x){return '<span>'+x+'</span>'}).join('')+'</div></dd></div></dl><p class="about">'+m.d+'</p><h4>Примеры работ</h4><div class="works"><i></i><i></i><i></i></div><a class="btn btn-fill" href="#book">Записаться к мастеру</a></div></div></div>';
+ ov.innerHTML='<div class="fl" role="dialog" aria-modal="true" aria-label="Профиль мастера"><div class="in"><div class="face front"><img alt="" src="'+ph(m.h)+'"></div><div class="face back"><button class="x" type="button" aria-label="Закрыть">×</button><h3>'+E(m.n)+'</h3><p class="role">'+E(m.r)+'</p><dl><div><dt>Стаж работы</dt><dd>'+E(m.e)+'</dd></div><div><dt>Специализация</dt><dd><div class="chips">'+m.t.map(function(x){return '<span>'+E(x)+'</span>'}).join('')+'</div></dd></div></dl><p class="about">'+E(m.d)+'</p><h4>Примеры работ</h4><div class="works"><i></i><i></i><i></i></div><a class="btn btn-fill" href="#book">Записаться к мастеру</a></div></div></div>';
  document.body.appendChild(ov);fl=ov.firstChild;
  put(rect());btn.style.visibility='hidden';document.body.style.overflow='hidden';
  void fl.offsetWidth;
@@ -318,7 +343,7 @@ addEventListener('resize',function(){if(ov)put(big())});
 <div id="cab">
 <div class="lmod hide" id="c-login" role="dialog" aria-modal="true" aria-label="Вход в личный кабинет">
   <div class="lbox">
-    <button class="cx" type="button" data-close aria-label="Закрыть">✕</button>
+    <button class="cx" type="button" data-close aria-label="Закрыть">×</button>
     <h1>Личный кабинет</h1>
     <p>Войдите, чтобы управлять записями, мастерами и статистикой салона.</p>
     <button class="btn fill" data-role="owner">Войти как владелец</button>
@@ -339,13 +364,12 @@ addEventListener('resize',function(){if(ov)put(big())});
 <script>
 
 (function(){
-var SV=[{id:1,n:"Мужская стрижка",m:45,p:1000},{id:2,n:"Женская стрижка",m:60,p:1500},{id:3,n:"Окрашивание",m:150,p:4000},{id:4,n:"Укладка",m:45,p:1200}];
-var MS=[{id:1,n:"Мастер 1"},{id:2,n:"Мастер 2"},{id:3,n:"Мастер 3"}];
+var SV=SALON.sv,MS=SALON.ms;
 var BK=[
 {id:1,c:"Клиент А",ph:"+7 000 000-00-01",s:2,m:1,d:0,h:10,st:"new"},
 {id:2,c:"Клиент Б",ph:"+7 000 000-00-02",s:1,m:2,d:0,h:11,st:"confirmed"},
-{id:3,c:"Клиент В",ph:"+7 000 000-00-03",s:3,m:3,d:0,h:13,st:"new"},
-{id:4,c:"Клиент Г",ph:"+7 000 000-00-04",s:4,m:1,d:1,h:15,st:"confirmed"},
+{id:3,c:"Клиент В",ph:"+7 000 000-00-03",s:4,m:3,d:0,h:13,st:"new"},
+{id:4,c:"Клиент Г",ph:"+7 000 000-00-04",s:3,m:1,d:1,h:15,st:"confirmed"},
 {id:5,c:"Клиент Д",ph:"+7 000 000-00-05",s:1,m:2,d:-1,h:12,st:"done"},
 {id:6,c:"Клиент Е",ph:"+7 000 000-00-06",s:2,m:1,d:-2,h:16,st:"done"}];
 var RV=[{id:1,a:"Клиент А",t:"Текст отзыва для примера. Появится на сайте после одобрения.",ok:null},{id:2,a:"Клиент Б",t:"Ещё один демонстрационный отзыв на модерации.",ok:null}];
@@ -402,12 +426,12 @@ function vStats(){
  return h;
 }
 function vCatalog(){
- var h='<div class="top"><h2>Услуги и мастера</h2><span class="demo">Цены и названия демонстрационные</span></div><div class="panel"><h3>Услуги</h3><div class="scr"><table class="tbl"><tr><th>Название</th><th>Минут</th><th>Цена, ₽</th><th></th></tr>';
- SV.forEach(function(s){h+='<tr><td>'+esc(s.n)+'</td><td>'+s.m+'</td><td>'+s.p+'</td><td><button class="btn sm bad" data-ds="'+s.id+'">Удалить</button></td></tr>'});
- h+='</table></div><form id="fs"><input name="n" placeholder="Название услуги" required><input name="m" type="number" min="5" step="5" placeholder="Минут" required style="width:100px"><input name="p" type="number" min="0" placeholder="Цена, ₽" required style="width:120px"><button class="btn fill sm">Добавить услугу</button></form></div>';
+ var h='<div class="top"><h2>Услуги и мастера</h2><span class="demo">Данные демонстрационные. Изменения сразу видны на сайте.</span><button class="btn sm" data-reset>Сбросить демо-данные</button></div><div class="panel"><h3>Услуги</h3><div class="scr"><table class="tbl"><tr><th>Название</th><th>Минут</th><th>Цена, ₽</th><th></th></tr>';
+ SV.forEach(function(s){h+='<tr><td>'+esc(s.n)+'<br><small>'+esc(SALON.cats[s.c]||"")+'</small></td><td>'+s.m+'</td><td>'+s.p+'</td><td><button class="btn sm bad" data-ds="'+s.id+'">Удалить</button></td></tr>'});
+ h+='</table></div><form id="fs"><input name="n" placeholder="Название услуги" required><select name="c" aria-label="Категория">'+SALON.cats.map(function(c,i){return'<option value="'+i+'">'+c+'</option>'}).join("")+'</select><input name="m" type="number" min="5" step="5" placeholder="Минут" required style="width:100px"><input name="p" type="number" min="0" placeholder="Цена, ₽ (0: не указана)" required style="width:200px"><button class="btn fill sm">Добавить услугу</button></form></div>';
  h+='<div class="panel"><h3>Мастера</h3>';
- MS.forEach(function(m){h+='<div class="rank"><span>'+esc(m.n)+'</span><button class="btn sm bad" data-dm="'+m.id+'">Удалить</button></div>'});
- return h+'<form id="fm"><input name="n" placeholder="Имя мастера" required><button class="btn fill sm">Добавить мастера</button></form></div>';
+ MS.forEach(function(m){h+='<div class="rank"><span>'+esc(m.n)+' <small>'+esc(m.r||"")+'</small></span><button class="btn sm bad" data-dm="'+m.id+'">Удалить</button></div>'});
+ return h+'<form id="fm"><input name="n" placeholder="Имя мастера" required><input name="r" placeholder="Специализация"><input name="e" placeholder="Стаж, например 5 лет" style="width:190px"><button class="btn fill sm">Добавить мастера</button></form></div>';
 }
 function render(){
  shell();var V={bookings:vBookings,calendar:vCalendar,reviews:vReviews,stats:vStats,catalog:vCatalog};
@@ -419,6 +443,7 @@ document.addEventListener("click",function(e){
  var t=e.target.closest("button");if(!t)return;
  if(t.id==="open-login"){$("c-login").classList.remove("hide");return}
  if(t.dataset.close!==undefined){$("c-login").classList.add("hide");return}
+ if(t.dataset.reset!==undefined){SALON.reset();SV=SALON.sv;MS=SALON.ms;return render()}
  if(t.dataset.role)return enter(t.dataset.role);
  if(t.id==="c-out"){role=null;$("c-app").classList.add("hide");document.body.style.overflow="";return}
  if(t.dataset.t){tab=t.dataset.t;return render()}
@@ -426,13 +451,13 @@ document.addEventListener("click",function(e){
  if(t.dataset.d){day+=+t.dataset.d;return render()}
  if(t.dataset.b){BK.filter(function(b){return b.id==t.dataset.b})[0].st=t.dataset.s;return render()}
  if(t.dataset.r){RV.filter(function(r){return r.id==t.dataset.r})[0].ok=t.dataset.v==="1";return render()}
- if(t.dataset.ds){SV=SV.filter(function(s){return s.id!=t.dataset.ds});return render()}
- if(t.dataset.dm){MS=MS.filter(function(m){return m.id!=t.dataset.dm});return render()}
+ if(t.dataset.ds){SALON.sv=SV=SV.filter(function(s){return s.id!=t.dataset.ds});SALON.save();return render()}
+ if(t.dataset.dm){SALON.ms=MS=MS.filter(function(m){return m.id!=t.dataset.dm});SALON.save();return render()}
 });
 document.addEventListener("submit",function(e){
  var f=e.target;if(f.id!=="fs"&&f.id!=="fm")return;e.preventDefault();var d=new FormData(f);
- if(f.id==="fs")SV.push({id:++seq,n:d.get("n"),m:+d.get("m"),p:+d.get("p")});
- if(f.id==="fm")MS.push({id:++seq,n:d.get("n")});
+ if(f.id==="fs"){SV.push({id:SALON.nextId(),n:d.get("n"),m:+d.get("m"),p:+d.get("p"),c:+d.get("c")});SALON.save()}
+ if(f.id==="fm"){var rr=d.get("r")||"Мастер";MS.push({id:SALON.nextId(),n:d.get("n"),r:rr,e:d.get("e")||"—",d:SALON.desc,t:[rr],h:SALON.hue()});SALON.save()}
  render();
 });
 document.addEventListener("keydown",function(e){if(e.key==="Escape")$("c-login").classList.add("hide")});
