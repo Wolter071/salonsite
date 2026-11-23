@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Личный кабинет</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--milk:#FBF8F2;--cream:#F3EBDD;--beige:#DDCCB0;--graphite:#2D2C2E;--gold:#A98649;--soft:#5E5A55;--line:rgba(45,44,46,.14);--ok:#4E7A56;--bad:#A24B44;--warn:#B07A2A;--shadow:0 14px 40px -22px rgba(60,45,20,.35);--serif:"Cormorant Garamond",Georgia,serif;--sans:"Jost",Arial,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--milk:#1F1E20;--cream:#28262A;--beige:#4A4136;--graphite:#F3EBDD;--gold:#C9A869;--soft:#B9B1A5;--line:rgba(243,235,221,.16);--ok:#7FB188;--bad:#D98A82;--warn:#D9AE63}}
+:root[data-theme="dark"]{--milk:#1F1E20;--cream:#28262A;--beige:#4A4136;--graphite:#F3EBDD;--gold:#C9A869;--soft:#B9B1A5;--line:rgba(243,235,221,.16);--ok:#7FB188;--bad:#D98A82;--warn:#D9AE63}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--milk);color:var(--graphite);font:300 16px/1.5 var(--sans)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;margin:0;line-height:1.1}
+.btn{border:1px solid var(--graphite);background:none;border-radius:999px;padding:9px 18px;font-size:14px;transition:.2s}
+.btn:hover{border-color:var(--gold);color:var(--gold)}
+.fill{background:var(--graphite);color:var(--milk)}.fill:hover{background:var(--gold);color:#fff}
+.sm{padding:6px 12px;font-size:13px}
+.ok{border-color:var(--ok);color:var(--ok)}.bad{border-color:var(--bad);color:var(--bad)}
+/* login */
+.login{min-height:100%;display:grid;place-items:center;padding:24px}
+.lbox{width:100%;max-width:420px;background:var(--cream);border-radius:24px;padding:40px 32px;box-shadow:var(--shadow);text-align:center}
+.lbox h1{font-size:38px;margin-bottom:10px}.lbox p{color:var(--soft);margin:0 0 24px}
+.lbox .btn{display:block;width:100%;margin-top:12px;padding:14px}
+.note{font-size:13px;color:var(--soft);margin-top:20px!important}
+/* app */
+.app{display:grid;grid-template-columns:230px 1fr;min-height:100%}
+aside{background:var(--cream);border-right:1px solid var(--line);padding:24px 16px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh}
+aside .logo{font:600 24px/1 var(--serif);padding:0 10px 20px}
+aside .tab{text-align:left;border:0;background:none;padding:11px 12px;border-radius:12px;color:var(--soft)}
+aside .tab[aria-selected=true]{background:var(--milk);color:var(--graphite);box-shadow:var(--shadow)}
+aside .who{margin-top:auto;font-size:14px;color:var(--soft);padding:0 10px}
+main{padding:32px clamp(16px,3vw,40px);min-width:0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+.top h2{font-size:36px}
+.demo{font-size:13px;color:var(--warn)}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th{text-align:left;font-weight:400;color:var(--soft);font-size:13px;padding:8px 10px;border-bottom:1px solid var(--line)}
+.tbl td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+.wrap{overflow-x:auto}
+.st{display:inline-block;padding:3px 10px;border-radius:999px;font-size:13px;border:1px solid currentColor}
+.s-new{color:var(--warn)}.s-confirmed{color:var(--ok)}.s-rejected,.s-cancelled{color:var(--bad)}.s-done{color:var(--soft)}
+.acts{display:flex;gap:6px;flex-wrap:wrap}
+.chips{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.chip[aria-pressed=true]{background:var(--graphite);color:var(--milk)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-bottom:28px}
+.kpi{background:var(--cream);border-radius:18px;padding:20px}.kpi b{display:block;font:600 38px/1 var(--serif);margin-top:6px}
+.panel{background:var(--cream);border-radius:18px;padding:22px;margin-bottom:20px}
+.panel h3{font-size:24px;margin-bottom:14px}
+.bars{display:flex;align-items:flex-end;gap:14px;height:170px}
+.bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;height:100%;font-size:13px;color:var(--soft)}
+.bar i{display:block;width:100%;background:linear-gradient(var(--gold),var(--beige));border-radius:8px 8px 0 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.rank{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line)}
+.rank:last-child{border:0}
+/* calendar */
+.cal{display:grid;grid-template-columns:54px repeat(var(--n),1fr);border:1px solid var(--line);border-radius:14px;overflow:auto;background:var(--milk);min-width:520px}
+.cal .hd{padding:10px;border-bottom:1px solid var(--line);font-size:14px;background:var(--cream)}
+.cal .hr{height:48px;border-bottom:1px solid var(--line);font-size:12px;color:var(--soft);padding:2px 6px}
+.col{position:relative;border-left:1px solid var(--line)}
+.ev{position:absolute;left:4px;right:4px;border-radius:8px;padding:4px 8px;font-size:12px;line-height:1.25;overflow:hidden;background:var(--beige);color:#2D2C2E;border-left:3px solid var(--warn)}
+.ev.c{border-color:var(--ok)}
+.nav{display:flex;gap:8px;align-items:center}
+/* forms */
+form{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+input{font:inherit;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--milk);color:var(--graphite);min-width:0}
+.rev{padding:14px 0;border-bottom:1px solid var(--line)}
+.rev:last-child{border:0}.rev p{margin:4px 0 10px;color:var(--soft)}
+.empty{color:var(--soft);padding:20px 0}
+.hide{display:none!important}
+@media(max-width:820px){.app{grid-template-columns:1fr}aside{position:static;height:auto;flex-direction:row;flex-wrap:wrap;padding:12px;border-right:0;border-bottom:1px solid var(--line)}aside .logo,aside .who{display:none}.two{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="login" id="login">
+  <div class="lbox">
+    <h1>Личный кабинет</h1>
+    <p>Войдите, чтобы управлять записями, мастерами и статистикой салона.</p>
+    <button class="btn fill" data-role="owner">Войти как владелец</button>
+    <button class="btn" data-role="admin">Войти как администратор</button>
+    <p class="note">Демо-вход. В рабочей версии вход идёт через Telegram с проверкой подписи, а роль определяется по Telegram ID, который хранится на сервере.</p>
+  </div>
+</div>
+
+<div class="app hide" id="app">
+  <aside>
+    <div class="logo">Название салона</div>
+    <div role="tablist" id="tabs" style="display:contents"></div>
+    <div class="who" id="who"></div>
+    <button class="btn sm" id="out" style="margin:8px 10px 0">Выйти</button>
+  </aside>
+  <main id="view"></main>
+</div>
+
+<script>
+(function(){
+var SV=[{id:1,n:"Мужская стрижка",m:45,p:1000},{id:2,n:"Женская стрижка",m:60,p:1500},{id:3,n:"Окрашивание",m:150,p:4000},{id:4,n:"Укладка",m:45,p:1200}];
+var MS=[{id:1,n:"Мастер 1"},{id:2,n:"Мастер 2"},{id:3,n:"Мастер 3"}];
+var BK=[
+{id:1,c:"Клиент А",ph:"+7 000 000-00-01",s:2,m:1,d:0,h:10,st:"new"},
+{id:2,c:"Клиент Б",ph:"+7 000 000-00-02",s:1,m:2,d:0,h:11,st:"confirmed"},
+{id:3,c:"Клиент В",ph:"+7 000 000-00-03",s:3,m:3,d:0,h:13,st:"new"},
+{id:4,c:"Клиент Г",ph:"+7 000 000-00-04",s:4,m:1,d:1,h:15,st:"confirmed"},
+{id:5,c:"Клиент Д",ph:"+7 000 000-00-05",s:1,m:2,d:-1,h:12,st:"done"},
+{id:6,c:"Клиент Е",ph:"+7 000 000-00-06",s:2,m:1,d:-2,h:16,st:"done"}];
+var RV=[{id:1,a:"Клиент А",t:"Текст отзыва для примера. Появится на сайте после одобрения.",ok:null},{id:2,a:"Клиент Б",t:"Ещё один демонстрационный отзыв на модерации.",ok:null}];
+var MON=[["Июн",38],["Июл",44],["Авг",41],["Сен",52],["Окт",58],["Ноя",63]];
+var LBL={new:"Новая",confirmed:"Подтверждена",rejected:"Отклонена",cancelled:"Отменена",done:"Выполнена"};
+var role=null,tab="bookings",flt="all",day=0,seq=100;
+var $=function(i){return document.getElementById(i)};
+function sv(i){return SV.filter(function(x){return x.id==i})[0]||{n:"—",m:60,p:0}}
+function ms(i){return(MS.filter(function(x){return x.id==i})[0]||{n:"—"}).n}
+function pad(n){return(n<10?"0":"")+n}
+function dstr(o){var d=new Date();d.setDate(d.getDate()+o);return pad(d.getDate())+"."+pad(d.getMonth()+1)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+var TABS=[["bookings","Записи"],["calendar","Календарь"],["reviews","Отзывы"],["stats","Статистика",1],["catalog","Услуги и мастера",1]];
+function shell(){
+ var h="";TABS.forEach(function(t){if(t[2]&&role!=="owner")return;h+='<button class="tab" role="tab" data-t="'+t[0]+'" aria-selected="'+(t[0]===tab)+'">'+t[1]+'</button>'});
+ $("tabs").innerHTML=h;$("who").textContent=role==="owner"?"Владелец":"Администратор";
+}
+function acts(b){
+ var a=[];
+ if(b.st==="new"){a.push(["confirmed","Подтвердить","ok"],["rejected","Отклонить","bad"])}
+ if(b.st==="confirmed"){a.push(["done","Выполнена","ok"],["cancelled","Отменить","bad"])}
+ return a.map(function(x){return'<button class="btn sm '+x[2]+'" data-b="'+b.id+'" data-s="'+x[0]+'">'+x[1]+'</button>'}).join("");
+}
+function vBookings(){
+ var list=BK.filter(function(b){return flt==="all"||b.st===flt}).sort(function(a,b){return a.d-b.d||a.h-b.h});
+ var h='<div class="top"><h2>Записи</h2></div><div class="chips">';
+ [["all","Все"]].concat(Object.keys(LBL).map(function(k){return[k,LBL[k]]})).forEach(function(c){h+='<button class="btn sm chip" data-f="'+c[0]+'" aria-pressed="'+(flt===c[0])+'">'+c[1]+'</button>'});
+ h+='</div><div class="wrap"><table class="tbl"><tr><th>Дата и время</th><th>Клиент</th><th>Услуга</th><th>Мастер</th><th>Статус</th><th></th></tr>';
+ list.forEach(function(b){h+='<tr><td>'+dstr(b.d)+', '+pad(b.h)+':00</td><td>'+esc(b.c)+'<br><small>'+esc(b.ph)+'</small></td><td>'+sv(b.s).n+'<br><small>'+sv(b.s).m+' мин</small></td><td>'+ms(b.m)+'</td><td><span class="st s-'+b.st+'">'+LBL[b.st]+'</span></td><td><div class="acts">'+acts(b)+'</div></td></tr>'});
+ if(!list.length)h+='<tr><td colspan="6" class="empty">Записей с таким статусом нет.</td></tr>';
+ return h+'</table></div>';
+}
+function vCalendar(){
+ var n=MS.length,h='<div class="top"><h2>Календарь</h2><div class="nav"><button class="btn sm" data-d="-1" aria-label="Предыдущий день">‹</button><b>'+dstr(day)+'</b><button class="btn sm" data-d="1" aria-label="Следующий день">›</button></div></div><div class="wrap"><div class="cal" style="--n:'+n+'"><div class="hd"></div>';
+ MS.forEach(function(m){h+='<div class="hd">'+esc(m.n)+'</div>'});
+ h+='<div>';for(var t=10;t<20;t++)h+='<div class="hr">'+pad(t)+':00</div>';h+='</div>';
+ MS.forEach(function(m){h+='<div class="col" style="height:480px">';
+  for(var t=1;t<10;t++)h+='<div style="position:absolute;left:0;right:0;top:'+t*48+'px;border-top:1px solid var(--line)"></div>';
+  BK.filter(function(b){return b.m===m.id&&b.d===day&&(b.st==="new"||b.st==="confirmed"||b.st==="done")}).forEach(function(b){var s=sv(b.s);h+='<div class="ev'+(b.st!=="new"?" c":"")+'" style="top:'+(b.h-10)*48+'px;height:'+Math.max(30,s.m/60*48-4)+'px"><b>'+esc(b.c)+'</b><br>'+s.n+'</div>'});
+  h+='</div>'});
+ return h+'</div></div><p class="demo" style="margin-top:12px">Оранжевая полоса: новая запись, зелёная: подтверждённая или выполненная.</p>';
+}
+function vReviews(){
+ var h='<div class="top"><h2>Отзывы</h2></div><div class="panel">';
+ RV.forEach(function(r){h+='<div class="rev"><b>'+esc(r.a)+'</b> '+(r.ok===null?'<span class="st s-new">На модерации</span>':r.ok?'<span class="st s-confirmed">Опубликован</span>':'<span class="st s-rejected">Скрыт</span>')+'<p>'+esc(r.t)+'</p><div class="acts">'+(r.ok!==true?'<button class="btn sm ok" data-r="'+r.id+'" data-v="1">Опубликовать</button>':'')+(r.ok!==false?'<button class="btn sm bad" data-r="'+r.id+'" data-v="0">Скрыть</button>':'')+'</div></div>'});
+ return h+'</div>';
+}
+function vStats(){
+ var act=BK.filter(function(b){return b.st==="done"||b.st==="confirmed"}),rev=BK.filter(function(b){return b.st==="done"}).reduce(function(s,b){return s+sv(b.s).p},0);
+ var by=function(k,f){var o={};act.forEach(function(b){var n=f(b[k]);o[n]=(o[n]||0)+1});return Object.keys(o).map(function(n){return[n,o[n]]}).sort(function(a,b){return b[1]-a[1]})};
+ var mx=Math.max.apply(null,MON.map(function(m){return m[1]}));
+ var h='<div class="top"><h2>Статистика</h2><span class="demo">Демо-данные: цифры считаются по тестовым записям</span></div><div class="kpis"><div class="kpi">Записей всего<b>'+BK.length+'</b></div><div class="kpi">Ожидают подтверждения<b>'+BK.filter(function(b){return b.st==="new"}).length+'</b></div><div class="kpi">Выполнено<b>'+BK.filter(function(b){return b.st==="done"}).length+'</b></div><div class="kpi">Выручка (демо)<b>'+rev+' ₽</b></div></div>';
+ h+='<div class="panel"><h3>Записи по месяцам</h3><div class="bars">'+MON.map(function(m){return'<div class="bar"><span>'+m[1]+'</span><i style="height:'+m[1]/mx*100+'%"></i>'+m[0]+'</div>'}).join("")+'</div></div><div class="two"><div class="panel"><h3>Популярные услуги</h3>'+by("s",function(i){return sv(i).n}).map(function(r){return'<div class="rank"><span>'+r[0]+'</span><b>'+r[1]+'</b></div>'}).join("")+'</div><div class="panel"><h3>Загрузка мастеров</h3>'+by("m",ms).map(function(r){return'<div class="rank"><span>'+r[0]+'</span><b>'+r[1]+'</b></div>'}).join("")+'</div></div>';
+ return h;
+}
+function vCatalog(){
+ var h='<div class="top"><h2>Услуги и мастера</h2><span class="demo">Цены и названия демонстрационные</span></div><div class="panel"><h3>Услуги</h3><div class="wrap"><table class="tbl"><tr><th>Название</th><th>Минут</th><th>Цена, ₽</th><th></th></tr>';
+ SV.forEach(function(s){h+='<tr><td>'+esc(s.n)+'</td><td>'+s.m+'</td><td>'+s.p+'</td><td><button class="btn sm bad" data-ds="'+s.id+'">Удалить</button></td></tr>'});
+ h+='</table></div><form id="fs"><input name="n" placeholder="Название услуги" required><input name="m" type="number" min="5" step="5" placeholder="Минут" required style="width:100px"><input name="p" type="number" min="0" placeholder="Цена, ₽" required style="width:120px"><button class="btn fill sm">Добавить услугу</button></form></div>';
+ h+='<div class="panel"><h3>Мастера</h3>';
+ MS.forEach(function(m){h+='<div class="rank"><span>'+esc(m.n)+'</span><button class="btn sm bad" data-dm="'+m.id+'">Удалить</button></div>'});
+ return h+'<form id="fm"><input name="n" placeholder="Имя мастера" required><button class="btn fill sm">Добавить мастера</button></form></div>';
+}
+function render(){
+ shell();var V={bookings:vBookings,calendar:vCalendar,reviews:vReviews,stats:vStats,catalog:vCatalog};
+ $("view").innerHTML=V[tab]();
+}
+function enter(r){role=r;tab="bookings";$("login").classList.add("hide");$("app").classList.remove("hide");render()}
+document.addEventListener("click",function(e){
+ var t=e.target.closest("button");if(!t)return;
+ if(t.dataset.role)return enter(t.dataset.role);
+ if(t.id==="out"){role=null;$("app").classList.add("hide");$("login").classList.remove("hide");return}
+ if(t.dataset.t){tab=t.dataset.t;return render()}
+ if(t.dataset.f){flt=t.dataset.f;return render()}
+ if(t.dataset.d){day+=+t.dataset.d;return render()}
+ if(t.dataset.b){BK.filter(function(b){return b.id==t.dataset.b})[0].st=t.dataset.s;return render()}
+ if(t.dataset.r){RV.filter(function(r){return r.id==t.dataset.r})[0].ok=t.dataset.v==="1";return render()}
+ if(t.dataset.ds){SV=SV.filter(function(s){return s.id!=t.dataset.ds});return render()}
+ if(t.dataset.dm){MS=MS.filter(function(m){return m.id!=t.dataset.dm});return render()}
+});
+document.addEventListener("submit",function(e){
+ e.preventDefault();var f=e.target,d=new FormData(f);
+ if(f.id==="fs")SV.push({id:++seq,n:d.get("n"),m:+d.get("m"),p:+d.get("p")});
+ if(f.id==="fm")MS.push({id:++seq,n:d.get("n")});
+ render();
+});
+})();
+</script>
+</body>
+</html>
